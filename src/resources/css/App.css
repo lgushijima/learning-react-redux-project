@@ -1,0 +1,28 @@
+html, body, div#root {
+    height: 100%;
+    min-height: 100%;
+    width: 100%;
+}
+
+.navbar .nav-item{
+    position: relative;
+}
+.user-info > span {
+    margin-right: .5rem;
+}
+.user-info.active .dropdown-menu{
+    position: absolute;
+    display: block;
+    top: 100%;
+    right: 0;
+    padding: 0px;
+}
+.user-info.active .dropdown-menu .dropdown-divider{
+    margin: 0;
+}
+img.avatar-42 {
+    height: 42px;
+    width: 42px;
+    background: #dadada;
+    border-radius: 50%;
+}

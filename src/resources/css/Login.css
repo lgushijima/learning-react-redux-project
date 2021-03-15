@@ -1,0 +1,80 @@
+html, body, div#root {
+    height: 100%;
+    min-height: 100%;
+}
+
+h2 {
+    color: #777;
+    font-size: 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+
+#root {
+    min-height: 100%;
+    height: 100%;
+    background: url(../images/bg-login.jpg) no-repeat left center;
+    background-size: cover;
+    color: #777;
+}
+
+.div-login-content{
+    display: grid;
+    min-height: 100%;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.login-wrapper {
+    max-width: 750px;
+    margin: auto;
+}
+
+.login-wrapper > div {
+    border-radius: 10px !important;
+    overflow: auto;
+}
+
+div.login-left-side {
+    background: #f2f2f2;
+}
+
+div.login-left-side > div {
+    width: 100%;
+    height: 100%;
+}
+
+div.login-left-side ul {
+    padding-left: 1.5rem;
+    margin: 0px;
+    text-align: left;
+}
+div.login-left-side ul > li{
+    text-align: left;
+    line-height: 1rem;
+}
+
+div.login-right-side {
+    background: #fff;
+}
+
+footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 80;
+    line-height: 30px;
+    background-color: rgba(0, 0, 0, 0.29);
+    color: #fff;
+}
+
+footer p {
+    margin: 0px;
+    padding: 0 10px;
+}
+
+.input-group i.fas{
+    color:#666;
+}
