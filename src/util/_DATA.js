@@ -3,7 +3,7 @@ let users = {
       id: 'sarahedo',
       password: '1234',
       name: 'Sarah Edo',
-      avatarURL: '../../images/snow.jpg',
+      avatarURL: '/icons/avatar-1.png',
       answers: {
         "8xf0y6ziyjabvozdd253nd": 'optionOne',
         "6ni6ok3ym7mf1p33lnez": 'optionOne',
@@ -16,7 +16,7 @@ let users = {
       id: 'tylermcginnis',
       password: '1234',
       name: 'Tyler McGinnis',
-      avatarURL: '../../images/tyler.jpg',
+      avatarURL: '/icons/avatar-2.png',
       answers: {
         "vthrdm985a262al8qx3do": 'optionOne',
         "xj352vofupe1dqz9emx13r": 'optionTwo',
@@ -27,7 +27,7 @@ let users = {
       id: 'johndoe',
       password: '1234',
       name: 'John Doe',
-      avatarURL: '../../images/leaf.jpg',
+      avatarURL: '/icons/avatar-4.png',
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
         "vthrdm985a262al8qx3do": 'optionTwo',
@@ -120,6 +120,30 @@ let users = {
   
   function generateUID () {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  }
+
+  export function _authenticateUsers (id, password) {
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+          if(users[id] && users[id].password.toLowerCase() === password.toLowerCase()){
+            return res({...users[id]})
+          }
+          return rej()
+      }, 1000)
+    })
+  }
+
+  export function _getUserById (id) {
+    const user = users[id]
+    return new Promise((res, rej) => {
+      setTimeout(() => {
+          if(user){
+            return res({...user})
+          }
+          return rej()
+        }
+        , 1000)
+    })
   }
   
   export function _getUsers () {

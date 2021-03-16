@@ -1,14 +1,97 @@
 html, body, div#root {
     height: 100%;
     min-height: 100%;
+}
+
+#root > .login-page {
+    min-height: 100%;
+    height: 100%;
+    background: url(../images/bg-login.jpg) no-repeat left center;
+    background-size: cover;
+    color: #777;
+    
+    display: grid;
+    padding: 0 20px;
+}
+
+.login-page .login-wrapper {
+    max-width: 750px;
+    margin: auto;
+}
+
+.login-page .login-wrapper > div {
+    border-radius: 10px !important;
+    overflow: auto;
+}
+
+.login-page .login-left-side {
+    background: #f2f2f2;
+}
+
+.login-page .login-left-side > div {
     width: 100%;
+    height: 100%;
+}
+
+.login-page .login-left-side ul {
+    padding-left: 1.5rem;
+    margin: 0px;
+    text-align: left;
+}
+
+.login-page .login-left-side ul > li{
+    text-align: left;
+    line-height: 1rem;
+}
+
+.login-page .login-right-side {
+    background: #fff;
+}
+
+.login-page footer {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 80;
+    line-height: 30px;
+    background-color: rgba(0, 0, 0, 0.29);
+    color: #fff;
+}
+
+.login-page footer p {
+    margin: 0px;
+    padding: 0 10px;
+}
+
+.login-page h2 {
+    color: #777;
+    font-size: 20px;
+    background: #fafafa;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+.input-group i.fas{
+    color:#666;
+}
+
+
+#root > .main-page {
+    min-height: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background-color: #fff;
 }
 
 .navbar .nav-item{
     position: relative;
+    padding: 4px;
+    border-radius: 5px;
 }
-.user-info > span {
-    margin-right: .5rem;
+.navbar .nav-item:hover{
+    background: #ececec;
+    cursor: pointer;
 }
 .user-info.active .dropdown-menu{
     position: absolute;

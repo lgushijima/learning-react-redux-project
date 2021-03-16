@@ -1,17 +1,33 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
 import {connect} from 'react-redux'
-import { Redirect } from "react-router-dom";
+import { Route} from "react-router-dom";
+
+import Dashboard from "./Dashboard";
+import Home2 from "./Home2";
 
 class MainPage extends Component {
     componentDidMount() {
+
     }
     render() {
-        if (this.props.authedUser === undefined) {
-            return <Redirect to="/Login" />;
-        }
-        return <Nav />;
+        const {authedUser} = this.props;
+        console.log(authedUser);
+
+        return (
+            <div className="main-page">
+                <Nav />
+                <Route path='/Dashboard' exact component={Dashboard} />
+                <Route path='/Home2' exact component={Home2} />
+            </div>
+        )
     }
 }
 
-export default connect()(MainPage);
+function mapStateToProps({authedUser}){
+    return {
+        authedUser
+    }
+}
+
+export default connect(mapStateToProps)(MainPage);
