@@ -4,7 +4,7 @@ import {
     MENU_STATE_INACTIVE 
 } from '../actions/baseSettings'
 
-export default function global(state = {}, action) {
+export default function menuState(state = {}, action) {
     switch(action.type){
         case TOGGLE_USER_MENU: {
             if(action.state !== null){

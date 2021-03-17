@@ -1,4 +1,4 @@
-import { loginUser, getUserById } from "../util/api";
+import { loginUser } from "../util/api";
 import { showLoading, hideLoading } from "react-redux-loading";
 
 export const AUTHENTICATE_USER = "AUTHENTICATE_USER";

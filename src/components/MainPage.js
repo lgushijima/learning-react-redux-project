@@ -1,33 +1,43 @@
 import React, { Component } from "react";
 import Nav from "./Nav";
-import {connect} from 'react-redux'
-import { Route} from "react-router-dom";
+import { connect } from "react-redux";
+import { Route } from "react-router-dom";
+import LoadingBar from "react-redux-loading";
+
+import { handleGetInitialData } from "../actions/shared";
 
 import Dashboard from "./Dashboard";
-import Home2 from "./Home2";
+import NewQuestion from "./NewQuestion";
+import LeaderBoard from "./LeaderBoard";
 
 class MainPage extends Component {
     componentDidMount() {
-
+        const { dispatch } = this.props;
+        dispatch(handleGetInitialData());
     }
     render() {
-        const {authedUser} = this.props;
-        console.log(authedUser);
+        const { questions, users } = this.props;
 
         return (
             <div className="main-page">
                 <Nav />
-                <Route path='/Dashboard' exact component={Dashboard} />
-                <Route path='/Home2' exact component={Home2} />
+                <LoadingBar className="loading-bar"/>
+
+                <Route path="/Dashboard" exact component={Dashboard} />
+                <Route path="/NewQuestion" exact component={NewQuestion} />
+                <Route path="/LeaderBoard" exact component={LeaderBoard} />
+                
+                <Route path="/Question/:id" component={NewQuestion} />
             </div>
-        )
+        );
     }
 }
 
-function mapStateToProps({authedUser}){
+function mapStateToProps({ questions, users }) {
     return {
-        authedUser
-    }
+        questions,
+        users,
+    };
 }
 
 export default connect(mapStateToProps)(MainPage);

@@ -75,37 +75,93 @@ html, body, div#root {
     color:#666;
 }
 
+.loading-bar{
+    background: #007bff79 !important;
+    position: absolute;
+    height: 2px;
+}
 
 #root > .main-page {
     min-height: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: auto 1fr;
+    grid-template-rows: auto auto 1fr;
     background-color: #fff;
 }
 
-.navbar .nav-item{
+.main-page .navbar {
+    border-bottom: 3px solid #c9e3ff;
+}
+
+.main-page .navbar .nav-item{
     position: relative;
-    padding: 4px;
+    margin: 0 5px;
+}
+
+.main-page .navbar .nav-item > a{
+    display: block;
+    line-height: 38px;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0 10px;
+}
+
+.main-page .navbar .nav-item > a.active{
+    background: #c9e3ff !important;
+    color:#007bff;
+}
+
+.main-page .user-info:hover,
+.main-page .navbar .nav-item:hover > a{
+    background: #eeeeee;
+}
+
+.main-page .user-info{
+    padding: 5px 10px;
     border-radius: 5px;
 }
-.navbar .nav-item:hover{
-    background: #ececec;
-    cursor: pointer;
-}
-.user-info.active .dropdown-menu{
+
+.main-page .user-info.active .dropdown-menu{
     position: absolute;
     display: block;
-    top: 100%;
+    top: calc(100% - 2px) !important;
     right: 0;
     padding: 0px;
+    bottom: auto;
 }
-.user-info.active .dropdown-menu .dropdown-divider{
+
+.main-page .user-info.active .dropdown-menu .dropdown-divider{
     margin: 0;
 }
-img.avatar-42 {
+
+.main-page img.avatar-42 {
     height: 42px;
     width: 42px;
     background: #dadada;
     border-radius: 50%;
+}
+
+.main-page .card-header > h2{
+    font-size:1.3rem;
+    margin:0;
+}
+
+.main-page .nav .nav-link{
+    display: block;
+    line-height: 38px;
+    border-radius: 5px;
+    font-weight: 500;
+    padding: 0 10px;
+    color:rgba(0,0,0,.5);
+    margin-right: 10px;
+}
+
+.main-page .nav .nav-link:hover{
+    background: #eeeeee;
+    color: rgba(0,0,0,.7);
+}
+
+.main-page .nav .nav-link.active{
+    background: #c9e3ff !important;
+    color:#007bff;
 }

@@ -8,7 +8,7 @@ class Login extends Component {
     render(){
         return (
             <Fragment>
-                <LoadingBar/>
+                <LoadingBar className="loading-bar"/>
 
                 <div className="login-page">
                     <div className="login-wrapper shadow">
