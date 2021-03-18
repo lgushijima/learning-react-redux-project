@@ -1,43 +1,38 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Nav from "./Nav";
 import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import LoadingBar from "react-redux-loading";
-
-import { handleGetInitialData } from "../actions/shared";
 
 import Dashboard from "./Dashboard";
 import NewQuestion from "./NewQuestion";
 import LeaderBoard from "./LeaderBoard";
 
 class MainPage extends Component {
-    componentDidMount() {
-        const { dispatch } = this.props;
-        dispatch(handleGetInitialData());
-    }
     render() {
-        const { questions, users } = this.props;
+        const { loading } = this.props;
 
         return (
             <div className="main-page">
                 <Nav />
                 <LoadingBar className="loading-bar"/>
-
-                <Route path="/Dashboard" exact component={Dashboard} />
-                <Route path="/NewQuestion" exact component={NewQuestion} />
-                <Route path="/LeaderBoard" exact component={LeaderBoard} />
-                
-                <Route path="/Question/:id" component={NewQuestion} />
+                { loading === true ? null : (
+                    <Fragment>
+                        <Route path="/dashboard" exact component={Dashboard} />
+                        <Route path="/add" exact component={NewQuestion} />
+                        <Route path="/leaderboard" exact component={LeaderBoard} />
+                        <Route path="/question/:id" component={NewQuestion} />
+                    </Fragment>
+                )}
             </div>
         );
     }
 }
 
-function mapStateToProps({ questions, users }) {
+function mapStateToProps({questions, users}){
     return {
-        questions,
-        users,
-    };
+        loading : (Object.keys(questions).length === 0 || Object.keys(users).length === 0)
+    }
 }
 
 export default connect(mapStateToProps)(MainPage);

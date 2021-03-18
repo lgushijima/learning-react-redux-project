@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link, NavLink, withRouter } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { handleLogoutUser } from "../actions/authedUser";
 
 class Nav extends Component {
@@ -32,8 +32,6 @@ class Nav extends Component {
     render() {
         const { userMenuState } = this.state;
         const { authedUser } = this.props;
-        // let isActive = this.context.router.isActive(this.props.to, true);
-        // let className = isActive ? "active" : "";
 
         return (
             <nav className="navbar navbar-expand navbar-light bg-light">

@@ -154,6 +154,7 @@ html, body, div#root {
     padding: 0 10px;
     color:rgba(0,0,0,.5);
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .main-page .nav .nav-link:hover{
@@ -164,4 +165,42 @@ html, body, div#root {
 .main-page .nav .nav-link.active{
     background: #c9e3ff !important;
     color:#007bff;
+}
+
+
+.main-page .card-header > h3{
+    font-size:1.1rem;
+    margin:0;
+    color: rgba(0,0,0,.7);
+}
+
+.main-page .card-body.questions-counter{
+    counter-reset: question;
+}
+
+.main-page .card-header > h3::before{
+    content: '#' counter(question) '. ';
+    counter-increment: question;
+}
+
+.main-page .question-wrapper{
+    display: grid;
+    grid-template-columns: auto 1fr;
+    margin: 1rem;
+    align-items: center;
+}
+.main-page .question-wrapper img{
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    margin-right: 2rem;
+    width: 128px;
+    height: 128px;
+}
+.main-page .question-wrapper > div{
+    border-left: 1px solid #ccc;
+    padding: 1rem 2rem;
+}
+.main-page .question-wrapper input + label {
+    margin-left: .5rem;
 }

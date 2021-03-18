@@ -6,21 +6,24 @@ import Login from "./Login";
 import MainPage from "./MainPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+
 import { handleSetUser } from "../actions/authedUser";
+import { handleGetInitialData } from "../actions/shared";
 
 import "../resources/css/App.css";
 
 class App extends Component {
     componentDidMount() {
-        const { authedUser, dispatch } = this.props;
+        const { dispatch, authedUser } = this.props;
         if (authedUser === null && localStorage["currentUser"]) {
             dispatch(handleSetUser(JSON.parse(localStorage["currentUser"])));
+            dispatch(handleGetInitialData());
         }
     }
 
     render() {
-        console.log("props", this.props);
         const { authedUser } = this.props;
+
         return (
             <Router>
                 <Switch>
