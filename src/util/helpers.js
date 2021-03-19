@@ -1,18 +1,33 @@
+export const VIEW_MODE_LIST = "List";
+export const VIEW_MODE_DETAIL = "Detail";
+
 export function formatDate(timestamp) {
     const d = new Date(timestamp);
     const time = d.toLocaleTimeString("en-US");
     return time.substr(0, 5) + time.slice(-2) + " | " + d.toLocaleDateString();
 }
 
-export function mapQuestionBySection(authedUser, questions, answeredSection) {
-    const result = Object.keys(questions).filter((q) => {
+export function mapQuestionBySection(authedUser, questions) {
+    let answeredQuestions = [];
+    let unansweredQuestions = [];
+
+    Object.keys(questions).forEach((q) => {
         const question = questions[q];
         const answered =
             question.optionOne.votes.includes(authedUser.id) || question.optionTwo.votes.includes(authedUser.id);
         
-            return answeredSection === answered;
+            if(answered){
+                answeredQuestions.push(q);
+            }
+            else{
+                unansweredQuestions.push(q);
+            }
     });
-    return result;
+
+    return {
+        answeredQuestions,
+        unansweredQuestions
+    }
 }
 
 export function formatQuestion(authedUser, question, user) {
@@ -27,7 +42,7 @@ export function formatQuestion(authedUser, question, user) {
         totalVotes: optionOne.votes.length + optionTwo.votes.length,
         optionOne: {
             text: optionOne.text,
-            answers: optionOne.votes.length,
+            answersCount: optionOne.votes.length,
             percentage: (
                 Math.round((optionOne.votes.length / (optionOne.votes.length + optionTwo.votes.length)) * 1000) / 10
             ).toFixed(1),
@@ -35,7 +50,7 @@ export function formatQuestion(authedUser, question, user) {
         },
         optionTwo: {
             text: optionTwo.text,
-            answers: optionTwo.votes.length,
+            answersCount: optionTwo.votes.length,
             percentage: (
                 Math.round((optionTwo.votes.length / (optionOne.votes.length + optionTwo.votes.length)) * 1000) / 10
             ).toFixed(1),

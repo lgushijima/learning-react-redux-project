@@ -39,18 +39,18 @@ class Nav extends Component {
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <NavLink  to="/Dashboard" className="nav-link py-0" activeClassName="active">Dashboard</NavLink>
+                                <NavLink  to="/Dashboard" className="nav-link bg-transition py-0" activeClassName="active">Dashboard</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/NewQuestion" className="nav-link py-0" activeClassName="active">Create Question</NavLink>
+                                <NavLink to="/NewQuestion" className="nav-link bg-transition py-0" activeClassName="active">Create Question</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/LeaderBoard" className="nav-link py-0" activeClassName="active">Leader Board</NavLink>
+                                <NavLink to="/LeaderBoard" className="nav-link bg-transition py-0" activeClassName="active">Leader Board</NavLink>
                             </li>
                         </ul>
 
                         <ul className="navbar-nav align-items-center">
-                            <li className={`nav-item user-info ${userMenuState}`} onClick={this.handleMenuState} onMouseLeave={this.closeMenu}>
+                            <li className={`nav-item bg-transition user-info ${userMenuState}`} onClick={this.handleMenuState} onMouseLeave={this.closeMenu}>
                                 <span className="px-2">Hello {authedUser.name}!</span>
                                 <img src={authedUser.avatarURL} alt="" title="" className="avatar-42" />
 

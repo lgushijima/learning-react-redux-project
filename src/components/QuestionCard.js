@@ -1,31 +1,33 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { formatQuestion } from "../util/helpers";
+import QuestionCardInfo from './QuestionCardInfo';
+
+import {
+    VIEW_MODE_LIST,
+    VIEW_MODE_DETAIL
+} from '../util/helpers'
 
 class QuestionCard extends Component {
     render() {
-        const { questions, users, authedUser, id } = this.props;
+        const { questions, users, authedUser, id, viewMode } = this.props;
         const questionInfo = formatQuestion(authedUser, questions[id], users[questions[id].author]);
+        const isAnswered = questionInfo.optionOne.hasVoted || questionInfo.optionTwo.hasVoted;
 
         return (
             <div className="container my-4">
                 <div className="card">
                     <div className="card-header">
-                        <h3>{questionInfo.name} asks:</h3>
+                        <h3>{viewMode === VIEW_MODE_DETAIL && isAnswered ? `Asked by ${questionInfo.name}` : `${questionInfo.name} asks:`}</h3>
                     </div>
                     <div className="card-body">
                         <div className="question-wrapper">
                             <img src={questionInfo.avatar} alt={questionInfo.name} />
                             <div>
-                                <h4>Would You Rather ...</h4>
-                                <div>
-                                    <input type="radio" value="1" name={`rad-${questionInfo.id}`} id={`rad-one-${questionInfo.id}`}/>
-                                    <label htmlFor={`rad-one-${questionInfo.id}`}>{questionInfo.optionOne.text}</label>
-                                </div>
-                                <div>
-                                    <input type="radio" value="2" name={`rad-${questionInfo.id}`} id={`rad-two-${questionInfo.id}`}/>
-                                    <label htmlFor={`rad-two-${questionInfo.id}`}>{questionInfo.optionTwo.text}</label>
-                                </div>
+                                {viewMode === VIEW_MODE_DETAIL && isAnswered ? '' : (
+                                    <h4>Would You Rather ...</h4>
+                                )}
+                                <QuestionCardInfo question={questionInfo} viewMode={viewMode} />
                             </div>
                         </div>
                     </div>

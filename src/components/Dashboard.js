@@ -4,6 +4,7 @@ import { mapQuestionBySection } from "../util/helpers";
 import DashboardOption from './DashboardOption';
 import QuestionCard from "./QuestionCard";
 
+import { VIEW_MODE_LIST } from '../util/helpers'
 class Dashboard extends Component {
     state = {
         answeredSection: false,
@@ -18,20 +19,21 @@ class Dashboard extends Component {
     render() {
         const { answeredSection } = this.state;
         const { questions, authedUser } = this.props;
-        let questionList = mapQuestionBySection(authedUser, questions, answeredSection);
-
+        let mappedSections = mapQuestionBySection(authedUser, questions, answeredSection);
+        const questionList = answeredSection===true ? mappedSections.answeredQuestions : mappedSections.unansweredQuestions;
+        
         return (
             <div className="container my-4">
                 <div className="card">
                     <div className="card-header">
                         <nav className="nav">
-                            <DashboardOption isActive={answeredSection===false} value={false} onClick={this.changeSection} text={"Unanswered Questions"} />
-                            <DashboardOption isActive={answeredSection===true} value={true} onClick={this.changeSection} text={"Answered Questions"} />
+                            <DashboardOption isActive={answeredSection===false} value={false} onClick={this.changeSection} text={"Unanswered Questions"} count={mappedSections.unansweredQuestions.length} />
+                            <DashboardOption isActive={answeredSection===true} value={true} onClick={this.changeSection} text={"Answered Questions"} count={mappedSections.answeredQuestions.length} />
                         </nav>
                     </div>
                     <div className="card-body questions-counter">
                         {questionList.map((id) => (
-                            <QuestionCard key={id} id={id} />
+                            <QuestionCard key={id} id={id} viewMode={VIEW_MODE_LIST}/>
                         ))}
                     </div>
                 </div>

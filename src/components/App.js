@@ -13,9 +13,16 @@ import { handleGetInitialData } from "../actions/shared";
 import "../resources/css/App.css";
 
 class App extends Component {
+    state = {
+        isAuthenticated: localStorage["currentUser"] !== undefined
+    }
+
     componentDidMount() {
         const { dispatch, authedUser } = this.props;
         if (authedUser === null && localStorage["currentUser"]) {
+            this.setState(()=>({
+                isAuthenticated: true
+            }));
             dispatch(handleSetUser(JSON.parse(localStorage["currentUser"])));
             dispatch(handleGetInitialData());
         }
@@ -32,9 +39,11 @@ class App extends Component {
                         component={Login}
                         path="/Login"
                         exact
-                        isAuthenticated={authedUser !== null}
+                        isAuthenticated={this.state.isAuthenticated}
                     />
-                    <PrivateRoute component={MainPage} path="/" isAuthenticated={authedUser !== null} />
+                    {authedUser!==null && (
+                        <PrivateRoute component={MainPage} path="/" isAuthenticated={this.state.isAuthenticated} />
+                    )}
                 </Switch>
             </Router>
         );
