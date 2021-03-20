@@ -17,10 +17,10 @@ export function mapQuestionBySection(authedUser, questions) {
             question.optionOne.votes.includes(authedUser.id) || question.optionTwo.votes.includes(authedUser.id);
         
             if(answered){
-                answeredQuestions.push(q);
+                answeredQuestions.push(question);
             }
             else{
-                unansweredQuestions.push(q);
+                unansweredQuestions.push(question);
             }
     });
 

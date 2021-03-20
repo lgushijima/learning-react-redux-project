@@ -1,17 +1,19 @@
 import React, { Component } from "react";
-
+import QuestionCardResultOption from './QuestionCardResultOption';
 class QuestionCardResult extends Component {
     state = {
-        percentageOne: 0,
-        percentageTwo: 0
+        percentageOne: '0%',
+        percentageTwo: '0%'
     }
 
     componentDidMount () {
         const { optionOne, optionTwo } = this.props.question;
+
+        //-- animate with css
         this.timeoutId = setTimeout(function () {
             this.setState(() => ({
-                percentageOne: `${parseFloat(optionOne.percentage)}%`,
-                percentageTwo: `${parseFloat(optionTwo.percentage)}%`
+                percentageOne: `${optionOne.percentage}%`,
+                percentageTwo: `${optionTwo.percentage}%`
             }));
         }.bind(this), 100);
     } 
@@ -27,20 +29,8 @@ class QuestionCardResult extends Component {
         
         return (
             <div>
-                <div className={`question-box ${optionOne.hasVoted ? 'active' : ''}`}>
-                    <p>Would you rather {optionOne.text}</p>
-                    <div className="progress-bar">
-                        <div style={{width: this.state.percentageOne}}><span>{optionOne.percentage}%</span></div>
-                    </div>
-                    <label>{optionOne.answersCount} out of {totalVotes} votes</label>
-                </div>
-                <div className={`question-box ${optionTwo.hasVoted ? 'active' : ''}`}>
-                    <p>Would you rather {optionTwo.text}</p>
-                    <div className="progress-bar">
-                        <div style={{width: this.state.percentageTwo }}><span>{optionTwo.percentage}%</span></div>
-                    </div>
-                    <label>{optionTwo.answersCount} out of {totalVotes} votes</label>
-                </div>
+                <QuestionCardResultOption option={optionOne} percentage={this.state.percentageOne} total={totalVotes} />
+                <QuestionCardResultOption option={optionTwo} percentage={this.state.percentageTwo} total={totalVotes} />
             </div>
         );
     }

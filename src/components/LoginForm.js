@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react'
 import { connect } from "react-redux";
 
-import { handleAuthenticateUser  } from "../actions/authedUser";
+import { handleAuthenticateUser } from "../actions/shared";
 
 class LoginForm extends Component {
     state = {

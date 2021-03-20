@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { BrowserRouter as Router, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 
 import Login from "./Login";
 import MainPage from "./MainPage";
@@ -8,43 +8,39 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
 import { handleSetUser } from "../actions/authedUser";
-import { handleGetInitialData } from "../actions/shared";
 
 import "../resources/css/App.css";
 
 class App extends Component {
-    state = {
-        isAuthenticated: localStorage["currentUser"] !== undefined
-    }
-
     componentDidMount() {
         const { dispatch, authedUser } = this.props;
+
         if (authedUser === null && localStorage["currentUser"]) {
-            this.setState(()=>({
-                isAuthenticated: true
-            }));
             dispatch(handleSetUser(JSON.parse(localStorage["currentUser"])));
-            dispatch(handleGetInitialData());
         }
     }
 
     render() {
-        const { authedUser } = this.props;
+        const { authedUser, isLoading, isAuthenticated } = this.props;
 
         return (
             <Router>
+                {isLoading === false && (
                 <Switch>
                     <PublicRoute
                         restricted={true}
                         component={Login}
                         path="/Login"
                         exact
-                        isAuthenticated={this.state.isAuthenticated}
+                        isAuthenticated={isAuthenticated}
                     />
-                    {authedUser!==null && (
-                        <PrivateRoute component={MainPage} path="/" isAuthenticated={this.state.isAuthenticated} />
+                    {authedUser !== null ? (
+                        <PrivateRoute component={MainPage} path="/" isAuthenticated={isAuthenticated} />
+                    ) : (
+                        <Route path="/" render={() => (<Redirect to="/Login"/>)} />
                     )}
                 </Switch>
+                )}
             </Router>
         );
     }
@@ -52,6 +48,8 @@ class App extends Component {
 
 function mapStateToProps({ authedUser }) {
     return {
+        isAuthenticated: authedUser !== null,
+        isLoading: authedUser === null && localStorage["currentUser"] !== undefined,
         authedUser,
     };
 }

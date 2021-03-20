@@ -31,10 +31,15 @@ class Dashboard extends Component {
                             <DashboardOption isActive={answeredSection===true} value={true} onClick={this.changeSection} text={"Answered Questions"} count={mappedSections.answeredQuestions.length} />
                         </nav>
                     </div>
+
                     <div className="card-body questions-counter">
-                        {questionList.map((id) => (
-                            <QuestionCard key={id} id={id} viewMode={VIEW_MODE_LIST}/>
+                        {questionList.sort((a,b) => b.timestamp - a.timestamp).map((question) => (
+                            <QuestionCard key={question.id} id={question.id} viewMode={VIEW_MODE_LIST}/>
                         ))}
+
+                        {questionList.length === 0 && (
+                            <p className="text-center">No {answeredSection === false ? "new unanswered" : "answered" } questions at the moment.</p>
+                        )}
                     </div>
                 </div>
             </div>

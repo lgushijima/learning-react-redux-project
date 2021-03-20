@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
-import { handleLogoutUser } from "../actions/authedUser";
+import { handleLogoutUser } from "../actions/shared";
 
 class Nav extends Component {
     state = {
@@ -39,13 +39,13 @@ class Nav extends Component {
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav mr-auto">
                             <li className="nav-item">
-                                <NavLink  to="/Dashboard" className="nav-link bg-transition py-0" activeClassName="active">Dashboard</NavLink>
+                                <NavLink  to="/dashboard" className="nav-link bg-transition py-0" activeClassName="active">Dashboard</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/NewQuestion" className="nav-link bg-transition py-0" activeClassName="active">Create Question</NavLink>
+                                <NavLink to="/add" className="nav-link bg-transition py-0" activeClassName="active">Create Question</NavLink>
                             </li>
                             <li className="nav-item">
-                                <NavLink to="/LeaderBoard" className="nav-link bg-transition py-0" activeClassName="active">Leader Board</NavLink>
+                                <NavLink to="/leaderBoard" className="nav-link bg-transition py-0" activeClassName="active">Leader Board</NavLink>
                             </li>
                         </ul>
 
