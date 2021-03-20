@@ -55,8 +55,7 @@ class Nav extends Component {
                                 <img src={authedUser.avatarURL} alt="" title="" className="avatar-42" />
 
                                 <div className="dropdown-menu">
-                                    <span className="dropdown-item">Action</span>
-                                    <span className="dropdown-item">Another action</span>
+                                    {/* <span className="dropdown-item">Change password</span> */}
                                     <div className="dropdown-divider"></div>
                                     <span className="dropdown-item text-danger" onClick={this.handleLogout}>
                                         <i className="fas fa-sign-out-alt mr-2"></i> 

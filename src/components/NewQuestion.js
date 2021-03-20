@@ -12,7 +12,10 @@ class NewQuestion extends Component {
         e.preventDefault();
         
         const { dispatch, authedUser } = this.props;
-        dispatch(handleSaveQuestion(authedUser.id, this.optionOne.value, this.optionTwo.value));
+        dispatch(handleSaveQuestion(authedUser.id, this.optionOne.value, this.optionTwo.value))
+        .then(() => {
+            this.props.history.push("/dashboard");
+        });
     }
 
     render() {

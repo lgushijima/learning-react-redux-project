@@ -1,9 +1,32 @@
-import { loginUser, getInitialData, saveQuestion } from "../util/api";
+import { loginUser, getInitialData, saveQuestionAnswer, saveQuestion } from "../util/api";
 import { showLoading, hideLoading } from "react-redux-loading";
-import { getQuestions, triggerSaveQuestion, triggerClearQuestions } from "../actions/questions";
-import { getUsers, triggerSaveQuestionToUser, triggerClearUsers } from "../actions/users";
+import { getQuestions } from "../actions/questions";
+import { getUsers } from "../actions/users";
 import { authenticateUser, logoutUser } from "../actions/authedUser";
 
+export const SAVE_ANSWER = "SAVE_ANSWER";
+export const SAVE_QUESTION = "SAVE_QUESTION";
+export const CLEAR_DATA = "CLEAR_DATA";
+
+function clearData() {
+    return {
+        type: CLEAR_DATA
+    }
+}
+
+function addAnswer(answer) {
+    return {
+        type: SAVE_ANSWER,
+        answer
+    }
+}
+
+function addQuestion(question) {
+    return {
+        type: SAVE_QUESTION,
+        question
+    }
+}
 
 export function handleAuthenticateUser(username, password) {
     return (dispatch) => {
@@ -18,11 +41,9 @@ export function handleAuthenticateUser(username, password) {
 export function handleLogoutUser() {
     return (dispatch) => {
         dispatch(logoutUser());
-        dispatch(triggerClearQuestions());
-        dispatch(triggerClearUsers());
+        dispatch(clearData());
     };
 }
-
 
 export function handleGetInitialData() {
     return (dispatch) => {
@@ -32,6 +53,19 @@ export function handleGetInitialData() {
             dispatch(getUsers(users));
             dispatch(hideLoading());
         });
+    };
+}
+
+export function handleSaveAnswer(authedUser, qid, answer){
+    return (dispatch) => {
+        dispatch(showLoading());
+        
+        let info = { authedUser, qid, answer };
+        return saveQuestionAnswer(info)
+            .then(() => {
+                dispatch(addAnswer(info));
+            })
+            .then(() => dispatch(hideLoading()));
     };
 }
 
@@ -46,8 +80,7 @@ export function handleSaveQuestion(authedUser, optionOneText, optionTwoText){
         };
         return saveQuestion(info)
             .then((question) =>{ 
-                dispatch(triggerSaveQuestion(question));
-                dispatch(triggerSaveQuestionToUser(authedUser, question))
+                dispatch(addQuestion(question));
             })
             .then(() => dispatch(hideLoading()));
     };

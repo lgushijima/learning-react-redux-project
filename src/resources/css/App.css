@@ -338,6 +338,110 @@ html, body, div#root {
     font-weight: 500;
 }
 
+/* LEADERBOARD */
+.main-page .leaderborad{
+    counter-reset: item;
+}
+.main-page .leaderboard-card {
+    position: relative;
+}
+
+.main-page .leaderboard-card + .leaderboard-card {
+    margin-top: 1rem;
+}
+
+.main-page .leaderboard-wrapper{
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    margin: 1rem;
+    align-items: center;
+}
+.main-page .leaderboard-wrapper img{
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    background-color: #eaeaea;
+    width: 128px;
+    height: 128px;
+}
+.main-page .leaderboard-wrapper .leaderboard-body{
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding: 1rem 2rem;
+    margin: 0 2rem;
+}
+
+.main-page .leaderboard-wrapper h4::before{
+    content: '#' counter(item) ' ';
+    counter-increment: item;
+    font-size: 1rem;
+    color: #007bff;
+}
+
+.main-page .leaderboard-wrapper .leaderboard-info{
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: .5rem 0;
+}
+
+.main-page .leaderboard-wrapper .leaderboard-info + .leaderboard-info{
+    border-top: 1px solid #eaeaea;
+}
+
+.main-page .leaderboard-wrapper .leaderboard-info > p {
+    margin: 0;
+}
+
+.main-page .leaderboard-wrapper .card {
+    text-align: center;
+}
+
+.main-page .leaderboard-wrapper .total-score {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    text-align: center;
+    line-height: calc(3rem - 3px);
+    border-radius: 2.5rem;
+    font-size: 1.5rem;
+    background: #c9e3ff;
+    color: #007bff;
+    margin: 0 1rem;
+}
+
+.leaderboard-card:nth-of-type(1)::before,
+.leaderboard-card:nth-of-type(2)::before,
+.leaderboard-card:nth-of-type(3)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0px;
+    width: 0;
+    height: 0;
+    border-top: 90px solid #f7f7f7;
+    border-right: 90px solid transparent;
+}
+.leaderboard-card:nth-of-type(1)::after,
+.leaderboard-card:nth-of-type(2)::after,
+.leaderboard-card:nth-of-type(3)::after {
+    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f091";
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    font-size: 2rem;
+}
+
+.leaderboard-card:nth-of-type(1)::after {
+    color: #ffd400;
+}
+.leaderboard-card:nth-of-type(2)::after {
+    color: #b9b9b9;
+}
+.leaderboard-card:nth-of-type(3)::after {
+    color: #d87814;
+}
+
+
+/* PAGE 404 */
 .main-page .page-404-title{
     color:#c9e3ff;
 }

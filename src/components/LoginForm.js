@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import { connect } from "react-redux";
+import packageJson from '../../package.json';
 
 import { handleAuthenticateUser } from "../actions/shared";
 
@@ -37,7 +38,8 @@ class LoginForm extends Component {
             <Fragment>
                 <h2 className="p-4">User Authentication</h2>
                 <div className="p-4">
-                    <p>Please provide your user credentials.</p>
+                    <h6>Welcome to the Would Your Rather App!</h6>
+                    <p>Please sign in to continue.</p>
 
                     <form className="my-4" onSubmit={(e)=>{this.onAuthenticateUser(e)}}>
                         <input name="txtReturnURL" type="hidden" />
@@ -71,7 +73,7 @@ class LoginForm extends Component {
 
                     <div className="pt-4">
                         <center>
-                            <small className="text-secondary">version 2021.03.14</small>
+                            <small className="text-secondary">version {packageJson.version}</small>
                         </center>
                     </div>
                 </div>

@@ -7,6 +7,18 @@ export function formatDate(timestamp) {
     return time.substr(0, 5) + time.slice(-2) + " | " + d.toLocaleDateString();
 }
 
+export function consolidateUserPoints(users, question){
+    const results = Object.keys(users).map((id)=>{
+        return {
+            id,
+            answers : Object.keys(users[id].answers).length,
+            questions : Object.keys(question).filter((qid)=> question[qid].author === id).length
+        }
+    })
+
+    return results.sort((a,b) => (b.answers + b.questions) - (a.answers + a.questions));
+}
+
 export function mapQuestionBySection(authedUser, questions) {
     let answeredQuestions = [];
     let unansweredQuestions = [];

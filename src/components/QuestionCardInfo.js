@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { withRouter } from "react-router";
-import { handleSaveAnswer } from '../actions/questions';
+import { handleSaveAnswer } from '../actions/shared';
 
 import QuestionCardInput from './QuestionCardInput';
 import QuestionCardResult from './QuestionCardResult';

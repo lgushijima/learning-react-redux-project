@@ -1,9 +1,12 @@
 import {
-    GET_QUESTIONS,
-    SAVE_QUESTION,
-    SAVE_ANSWER,
-    CLEAR_QUESTIONS
+    GET_QUESTIONS
 } from '../actions/questions'
+
+import {
+    SAVE_ANSWER,
+    SAVE_QUESTION,
+    CLEAR_DATA
+} from '../actions/shared'
 
 export default function questions(state = {}, action) {
     switch(action.type){
@@ -33,7 +36,7 @@ export default function questions(state = {}, action) {
                 [id]: { ...action.question}
             }
         }
-        case CLEAR_QUESTIONS: {
+        case CLEAR_DATA: {
             return {}
         }
         default: 

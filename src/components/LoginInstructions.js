@@ -6,6 +6,7 @@ export default function LoginInstructions () {
         <div className="p-3 text-center">
             <img alt="Account Logo" src={reactLogo} height="70" className="pb-4"/>
 
+            
             <p>
                 <small>This is a React/Redux project created to test my learnings during React Nanodegree program on Udacity.com</small>
             </p>
