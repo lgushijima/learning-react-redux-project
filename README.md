@@ -24,3 +24,7 @@ Use any of those usernames:
 
 All users has the same password: 1234
 
+## Observations
+
+Changes and new records will not be accessible at their url because of the way the backend is set up in this application.
+This app uses a static javascript data to simulate a database.
