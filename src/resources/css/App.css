@@ -233,8 +233,8 @@ html, body, div#root {
     border-radius: 50%;
     background-color: #eaeaea;
     margin-right: 2rem;
-    width: 128px;
-    height: 128px;
+    width: 100px;
+    height: 100px;
 }
 .main-page .question-wrapper > div{
     border-left: 1px solid #ccc;
@@ -360,8 +360,8 @@ html, body, div#root {
     border: 1px solid #ccc;
     border-radius: 50%;
     background-color: #eaeaea;
-    width: 128px;
-    height: 128px;
+    width: 100px;
+    height: 100px;
 }
 .main-page .leaderboard-wrapper .leaderboard-body{
     border-left: 1px solid #ccc;

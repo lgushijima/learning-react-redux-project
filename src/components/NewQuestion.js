@@ -22,7 +22,7 @@ class NewQuestion extends Component {
         return (
             <div className="container my-4">
                 <div className="row">
-                    <div className="col-12 col-md-6 col-lg-8 mx-auto">
+                    <div className="col-sm-12 col-md-11 col-lg-8 mx-auto">
                         <div className="card">
                             <div className="card-header">
                                 <h2 className="text-primary text-center">Create New Question</h2>

@@ -11,7 +11,7 @@ class LeaderBoard extends Component {
         return (
             <div className="container my-4 leaderborad">
                 <div className="row">
-                    <div className="col-12 col-md-6 col-lg-8 mx-auto">
+                    <div className="col-sm-12 col-md-11 col-lg-8 mx-auto">
                         {leaderBoard.map((user) => (
                             <div key={user.id} className="card leaderboard-card">
                                 <div className="card-body">
