@@ -19,7 +19,7 @@ class App extends Component {
     }
 
     render() {
-        const { authedUser, isLoading, isAuthenticated } = this.props;
+        const { isLoading, isAuthenticated } = this.props;
 
         return (
             <Router>
