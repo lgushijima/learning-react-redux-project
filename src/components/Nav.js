@@ -27,6 +27,8 @@ class Nav extends Component {
 
         const {dispatch} = this.props;
         dispatch(handleLogoutUser());
+        
+        this.props.history.push(`/Login`);
     };
 
     render() {

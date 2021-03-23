@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-d
 
 import Login from "./Login";
 import MainPage from "./MainPage";
-import PrivateRoute from "./PrivateRoute";
-import PublicRoute from "./PublicRoute";
 
 import { handleSetUser } from "../actions/authedUser";
 
@@ -27,18 +25,20 @@ class App extends Component {
             <Router>
                 {isLoading === false && (
                 <Switch>
-                    <PublicRoute
-                        restricted={true}
-                        component={Login}
-                        path="/Login"
-                        exact
-                        isAuthenticated={isAuthenticated}
-                    />
-                    {authedUser !== null ? (
-                        <PrivateRoute component={MainPage} path="/" isAuthenticated={isAuthenticated} />
-                    ) : (
-                        <Route path="/" render={() => (<Redirect to="/Login"/>)} />
-                    )}
+                    <Route path="/Login" exact component={Login} />
+                    
+                    <Route path="/" render={(props) =>{
+                        if(isAuthenticated) {
+                            return <MainPage />;
+                        }
+                        else{
+                            const requestedUrl = encodeURIComponent(props.location.pathname);
+                            return <Redirect to={{
+                                pathname: "/Login",
+                                search: `?returnUrl=${requestedUrl}`,
+                            }} />
+                        }
+                    }} />
                 </Switch>
                 )}
             </Router>

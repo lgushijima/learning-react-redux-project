@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import { connect } from "react-redux";
+import { withRouter } from 'react-router';
 import packageJson from '../../package.json';
 
 import { handleAuthenticateUser } from "../actions/shared";
@@ -81,4 +82,4 @@ class LoginForm extends Component {
         )
     }
 }
-export default connect()(LoginForm)
+export default withRouter(connect()(LoginForm))

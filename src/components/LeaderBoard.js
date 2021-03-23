@@ -6,7 +6,6 @@ class LeaderBoard extends Component {
     render() {
         const { users, questions } = this.props;
         const leaderBoard = consolidateUserPoints(users, questions);
-        console.log(leaderBoard);
 
         return (
             <div className="container my-4 leaderborad">

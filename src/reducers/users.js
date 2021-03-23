@@ -28,7 +28,6 @@ export default function users(state = {}, action) {
         }
         case SAVE_ANSWER : {
             const { authedUser, qid, answer } = action.answer;
-            console.log('Update user answer');
             return {
                 ...state,
                 [authedUser]: {
